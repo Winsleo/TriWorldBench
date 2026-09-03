@@ -58,8 +58,16 @@ def resolve_metrics(selection: list[int] | str) -> list[MetricSpec]:
 
 
 def expand_dependencies(selection: list[MetricSpec], cfg: dict | None = None) -> list[MetricSpec]:
-    """Ensure base metrics run before derived metrics that depend on them."""
-    _ = cfg
+    """Ensure base metrics run before derived metrics that depend on them.
+
+    If cfg has ``skip_auto_dependencies: true``, return the user selection
+    as-is (sorted by index). This is used for test_dataset / no-GT eval where
+    STATE- and vlm_consistency-dependent metrics (12, 13, 14, 15) are not
+    selected, but their ``QUALITY_PENALTY_METRICS`` auto-add would otherwise
+    inject them and crash on missing STATE / vlm_data_base.
+    """
+    if cfg and cfg.get("skip_auto_dependencies", False):
+        return sorted(selection, key=lambda s: s.index)
     indices = {spec.index for spec in selection}
     extras: list[int] = []
 

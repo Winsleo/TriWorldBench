@@ -458,7 +458,11 @@ def compute_episode(
             output_key = f"{metric}_penalized"
             metric_config = quality_config.get(metric, {})
             if None in (quality, trajectory, vlm_consistency):
-                aggregated[output_key] = None
+                # Penalty deps missing (e.g. skip_auto_dependencies mode
+                # where trajectory_accuracy / vlm_consistency are not
+                # selected). Fall back to raw score so the CSV column is
+                # non-empty; user is opting in to the un-penalized value.
+                aggregated[output_key] = quality
                 continue
             aggregated[output_key] = (
                 quality

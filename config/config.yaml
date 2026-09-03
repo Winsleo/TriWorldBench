@@ -3,8 +3,8 @@
 
 # --- Evaluation Input ---
 # Preprocessed dataset under generate/. Use <method>_<batch_ts>_latest to follow newest run.
-# Example: generate/<your_method>_20260715_103045_latest
-eval_input: generate/<your_method>_latest
+# Example: generate/a2v_wan22_ti2v_5b_mv3_20260715_103045_latest
+eval_input: generate/a2v_ep12_baseline_latest
 
 # --- Metrics Selection ---
 # List metric indices to run [0, ..., 18], or "all" for all 19 metrics
@@ -17,6 +17,10 @@ eval_input: generate/<your_method>_latest
 # aesthetic_quality / image_quality CSV scores apply trajectory+VLM penalties;
 # raw base scores are logged under logs/metric_17_*.log and logs/metric_18_*.log
 metrics: all
+# When true, skip expand_dependencies' auto-injection of trajectory_accuracy (12)
+# and vlm_consistency01/02/03 (13/14/15). Required when running without real
+# GT/STATE/vlm_data_base (test_dataset mode + build_fake_gt.py GT tree).
+skip_auto_dependencies: false
 # --- Output ---
 output_dir: output
 
@@ -30,10 +34,10 @@ metric_parallel_per_gpu:
   subject_consistency: 2
   trajectory_accuracy: 4
 # Visible GPU device IDs (absolute indices on the host)
-gpu_list: "0,1,2,3,4,5,6,7"
+gpu_list: "4"
 # Python interpreter for metric evaluation; use python after activating triworldbench,
 # or set an absolute path to the environment's Python.
-python: python
+python: /disk/worldmodel/uv/envs/triworldbench/bin/python
 
 # --- Model Weights ---
 # Root directory for all metric model weights (internal structure must match original)
