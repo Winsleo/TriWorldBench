@@ -1,0 +1,47 @@
+# Triworld Benchmark Evaluation Configuration — NO-GT mode (test_dataset style)
+# Used for: test_dataset local eval (no real GT frames / no STATE).
+# Workflow: 1) preprocess -> 2) build_fake_gt.py -> 3) run_eval this config
+
+# --- Evaluation Input ---
+eval_input: generate/a2v_test_dataset_20260902_220745_latest
+
+# --- Metrics Selection (9 GT-free only) ---
+metrics: [0, 1, 2, 3, 5, 7, 11, 17, 18]
+skip_auto_dependencies: true
+
+# --- Output ---
+output_dir: output
+
+# --- Runtime ---
+parallel_per_gpu: 4
+metric_parallel_per_gpu:
+  background_consistency: 1
+  semantic_alignment: 1
+  subject_consistency: 2
+gpu_list: "4"
+python: /disk/worldmodel/uv/envs/triworldbench/bin/python
+
+# --- Model Weights ---
+weights_root: ./weights
+
+# --- Data References ---
+gt_dataset: test_data/gt_dataset_fake
+STATE: test_data/STATE_test
+hyperparameters: config/hyperparameters.yaml
+
+# --- Preprocessing Defaults ---
+preprocess:
+  target_width: 320
+  target_height: 240
+  align_mode: match_gt
+  workers: 8
+
+# --- VLM Consistency (unused in 9-GT-free mode but listed for completeness) ---
+vlm_reference_db: test_data/vlm_data_base
+vlm_max_new_tokens: 1024
+
+# --- Episode Weights ---
+episode_weights: true
+
+# --- Advanced ---
+resume: false
