@@ -38,3 +38,4 @@ weights/vjepa
 __pycache__/
 *.py[cod]
 .DS_Store
+logs/
