@@ -4,8 +4,21 @@ import numpy as np
 from scipy import interpolate
 
 def load_ckpt(model, path):
-    """ Load checkpoint """
-    state_dict = torch.load(path, map_location=torch.device('cpu'))
+    """ Load checkpoint (supports both safetensors and torch .pth/.pt pickle). """
+    with open(path, "rb") as f:
+        header = f.read(8)
+    # safetensors magic header is a small u64 length; first bytes are typically non-printable
+    # .safetensors files start with an 8-byte little-endian uint64 (json metadata length).
+    # We also accept explicit .safetensors suffix as a hint.
+    is_safetensors = (
+        path.endswith(".safetensors")
+        or (len(header) >= 8 and int.from_bytes(header[:8], "little") < 1_000_000)
+    )
+    if is_safetensors:
+        from safetensors.torch import load_file as _safe_load
+        state_dict = _safe_load(path, device="cpu")
+    else:
+        state_dict = torch.load(path, map_location=torch.device('cpu'), weights_only=False)
     model.load_state_dict(state_dict, strict=False)
 
 def resize_data(img1, img2, flow, factor=1.0):
