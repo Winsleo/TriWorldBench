@@ -26,6 +26,13 @@
 - [Leaderboard & Submission](#leaderboard--submission)
 - [Acknowledgement](#acknowledgement)
 
+## 📘 Additional Documentation
+- **[docs/LOCAL_EVAL_GUIDE.md](docs/LOCAL_EVAL_GUIDE.md)** — Agent 执行版本地评测指南(零重下、30 分钟跨机迁移、含端到端 quick check)。**必读 §0 + §11(本地 vs 提交区分)**
+- **[docs/METRICS_AND_IMPROVEMENT.md](docs/METRICS_AND_IMPROVEMENT.md)** — 19 指标逐个拆解 + 提升策略矩阵 + 端到端路线图(含代码位置速查)
+- **[SUBMISSION_README.md](SUBMISSION_README.md)** — **榜单提交流程**(500 ep, 320×240, submission_check.py)
+- [docs/A2V_SETUP.md](docs/A2V_SETUP.md) — A2V 三视角适配初版(训练细节)
+- [docs/A2V_TRIWORLDBENCH_EXEC_PLAN.md](docs/A2V_TRIWORLDBENCH_EXEC_PLAN.md) — 早期执行计划
+
 ---
 
 ## Overview
