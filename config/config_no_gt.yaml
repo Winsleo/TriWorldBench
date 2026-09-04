@@ -5,8 +5,21 @@
 # --- Evaluation Input ---
 eval_input: generate/a2v_test_dataset_20260902_220745_latest
 
-# --- Metrics Selection (9 GT-free only) ---
-metrics: [0, 1, 2, 3, 5, 7, 11, 17, 18]
+# --- Metrics Selection (5 GT-free only — never use FAKE GT) ---
+# TWB-Score on test_dataset must NOT mix scores computed against the FAKE GT
+# scaffold (test_data/test/gt_dataset) — those numbers are meaningless and would
+# inflate the aggregate. Excluded:
+#   3 background_consistency, 5 flow_score, 7 photometric_smoothness,
+#   11 subject_consistency  -- all read GT frames
+#   4 dynamic_state_alignment, 12 trajectory_accuracy  -- need real STATE
+#   13/14/15 vlm_consistency, 16 VQA  -- need VQA annotations not bundled
+# Survivors (5):
+#   0 Instruction_Following (VLM, gen vs instruction)
+#   1 Interaction_Quality (VLM)
+#   2 Perspectivity (VLM)
+#  17 aesthetic_quality (pyiqa on gen only)
+#  18 image_quality (pyiqa on gen only)
+metrics: [0, 1, 2, 17, 18]
 skip_auto_dependencies: true
 
 # --- Output ---
@@ -37,7 +50,7 @@ preprocess:
   align_mode: match_gt
   workers: 8
 
-# --- VLM Consistency (unused in 9-GT-free mode but listed for completeness) ---
+# --- VLM Consistency (unused in 5-GT-free mode but listed for completeness) ---
 vlm_reference_db: test_data/val/vlm_data_base
 vlm_max_new_tokens: 1024
 
