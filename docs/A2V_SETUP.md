@@ -280,9 +280,9 @@ huggingface-cli download TriWorldBench/Dataset \
 解压后结构：
 
 ```
-/test_data/gt_dataset/   (GT 三视角参考帧)
-/test_data/STATE/        (episode 状态标注, JSON)
-/test_data/vlm_data_base/ (VLM 少样本参考 DB)
+/test_data/val/gt_dataset/   (GT 三视角参考帧)
+/test_data/val/STATE/        (episode 状态标注, JSON)
+/test_data/val/vlm_data_base/ (VLM 少样本参考 DB)
 ```
 
 ### 6.2 Preprocess

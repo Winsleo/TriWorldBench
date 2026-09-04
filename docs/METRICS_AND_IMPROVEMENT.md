@@ -280,7 +280,7 @@ score = 1.0 / (dtw / len(dtw_path))
 **算法**(Qwen3-VL 看 head vs working wrist):
 ```
 提示词:metrics/vlm_prompt/01.txt
-- few-shot:加载 test_data/vlm_data_base/{positive,negative}/ 的参考样本
+- few-shot:加载 test_data/val/vlm_data_base/{positive,negative}/ 的参考样本
 - 评分维度:
   1. state_consistency: head 与 working wrist 是否同一动作状态
   2. object_consistency: head 与 working wrist 是否同一抓取/操作物体

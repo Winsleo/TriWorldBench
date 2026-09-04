@@ -4,6 +4,9 @@ input/
 test_data/*
 !test_data/vlm_data_base/
 !test_data/vlm_data_base/**
+!test_data/val/
+!test_data/val/vlm_data_base/
+!test_data/val/vlm_data_base/**
 # test_data/STATE
 # test_data/STATE_100
 # test_data/STATE_vlm

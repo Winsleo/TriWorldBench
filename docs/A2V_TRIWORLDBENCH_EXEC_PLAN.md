@@ -91,11 +91,11 @@ huggingface-cli download TriWorldBench/Dataset \
   --include "val_dataset/*" \
   --local-dir /disk/worldmodel/wangshilong/TriWorldBench/
 
-# 验证: ls test_data/gt_dataset/ | head -3  # 应有 episode*/ 子目录
-# 验证: ls test_data/STATE/ | head -3       # 应有 episode*.json
+# 验证: ls test_data/val/gt_dataset/ | head -3  # 应有 episode*/ 子目录
+# 验证: ls test_data/val/STATE/ | head -3       # 应有 episode*.json
 ```
 
-**产物**: `test_data/gt_dataset/` + `test_data/STATE/` + `test_data/vlm_data_base/`
+**产物**: `test_data/val/gt_dataset/` + `test_data/val/STATE/` + `test_data/val/vlm_data_base/`
 
 #### Step 1.2: 下载 metric weights (~30GB)
 
@@ -297,9 +297,9 @@ metric_parallel_per_gpu:
 gpu_list: "0,1,2,3,4,5,6,7"
 python: /disk/worldmodel/uv/envs/triworldbench/bin/python
 weights_root: /disk/worldmodel/wangshilong/TriWorldBench/weights
-gt_dataset: /disk/worldmodel/wangshilong/TriWorldBench/test_data/gt_dataset
-STATE: /disk/worldmodel/wangshilong/TriWorldBench/test_data/STATE
-vlm_reference_db: /disk/worldmodel/wangshilong/TriWorldBench/test_data/vlm_data_base
+gt_dataset: /disk/worldmodel/wangshilong/TriWorldBench/test_data/val/gt_dataset
+STATE: /disk/worldmodel/wangshilong/TriWorldBench/test_data/val/STATE
+vlm_reference_db: /disk/worldmodel/wangshilong/TriWorldBench/test_data/val/vlm_data_base
 ```
 
 #### Step 4.3: Run Evaluation
@@ -376,7 +376,7 @@ slurm 没 wandb API key → 必须 `WANDB_MODE=offline` 或 `LOGGER=tensorboard`
 
 | Step | Done 标志 |
 |---|---|
-| 1.1 val_dataset 下载 | `test_data/gt_dataset/` + `test_data/STATE/` 存在,有 ≥100 个 episode |
+| 1.1 val_dataset 下载 | `test_data/val/gt_dataset/` + `test_data/val/STATE/` 存在,有 ≥100 个 episode |
 | 1.2 weights 下载 | `weights/` 下所有 metric 权重存在;`smoke_imports.py` 通过 |
 | 1.3 依赖装好 | `python -c "import torch, transformers, qwen_vl_utils"` 不报错 |
 | 2.1 数据集 | `dataset_mv/metadata.jsonl` 20 行 + 20 个 sample 目录 |

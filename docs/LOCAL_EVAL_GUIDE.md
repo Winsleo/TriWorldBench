@@ -12,7 +12,7 @@
 | 维度 | 本地评测(val_dataset) | 榜单提交(test_dataset) |
 |---|---|---|
 | **Episode 数** | 100 | **500** |
-| **GT 视频** | ✅ 有(`test_data/gt_dataset/episodeN/{view}/frames/`) | ❌ **无**, 不可本地看 metric |
+| **GT 视频** | ✅ 有(`test_data/val/gt_dataset/episodeN/{view}/frames/`) | ❌ **无**, 不可本地看 metric |
 | **First frame** | `gt_dataset/episodeN/{view}/frames/frame_000.jpg` | `first_frame/episodeN_{view}.jpg` |
 | **指令文件** | `STATE/episodeN.json` | `instructions/episodeN.json` |
 | **轨迹文件** | 无 | `data/episodeN.hdf5`(帧数从此读) |
@@ -389,7 +389,7 @@ cat "$SUMMARY"
 | Step | DoD |
 |---|---|
 | 2.4 smoke | `[smoke] imports ok` + `all ok` |
-| 3.1 val_dataset | `test_data/gt_dataset/` 100 个 episode + `STATE/` 100 个 `.json` |
+| 3.1 val_dataset | `test_data/val/gt_dataset/` 100 个 episode + `STATE/` 100 个 `.json` |
 | 3.3 weights verify | 13 个路径全 `[OK]` |
 | 3.5 weight load | CLIP/RAFT/DINO/Tartan 加载无 exception |
 | 4.1 dataset_mv | `dataset_mv/metadata.jsonl` 20 行 + 20 个 sample 目录 |

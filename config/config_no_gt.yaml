@@ -25,8 +25,9 @@ python: /disk/worldmodel/uv/envs/triworldbench/bin/python
 weights_root: ./weights
 
 # --- Data References ---
-gt_dataset: test_data/gt_dataset_fake
-STATE: test_data/STATE_test
+# Test bundle (500 ep, FAKE GT scaffold). Pair with test_data/test/{gt_dataset,STATE,test_dataset}.
+gt_dataset: test_data/test/gt_dataset
+STATE: test_data/test/STATE
 hyperparameters: config/hyperparameters.yaml
 
 # --- Preprocessing Defaults ---
@@ -37,7 +38,7 @@ preprocess:
   workers: 8
 
 # --- VLM Consistency (unused in 9-GT-free mode but listed for completeness) ---
-vlm_reference_db: test_data/vlm_data_base
+vlm_reference_db: test_data/val/vlm_data_base
 vlm_max_new_tokens: 1024
 
 # --- Episode Weights ---

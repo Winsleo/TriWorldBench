@@ -44,10 +44,11 @@ python: /disk/worldmodel/uv/envs/triworldbench/bin/python
 weights_root: ./weights
 
 # --- Data References (relative to project root) ---
+# Val bundle (100 ep with real GT). Use with config_no_gt.yaml for test bundle.
 # GT flat episode trees (episodeN/{head,left,right}/frames/...)
-gt_dataset: test_data/gt_dataset
+gt_dataset: test_data/val/gt_dataset
 # Per-episode STATE JSON files (episodeN.json)
-STATE: test_data/STATE
+STATE: test_data/val/STATE
 hyperparameters: config/hyperparameters.yaml
 
 # --- Preprocessing Defaults ---
@@ -60,7 +61,7 @@ preprocess:
 # --- VLM Consistency ---
 # vlm_consistency01/02/03 run fixed prompts: metrics/vlm_prompt/01.txt, 02.txt, 03.txt
 # vlm_reference_db required for vlm_consistency01 (01 few-shot)
-vlm_reference_db: test_data/vlm_data_base
+vlm_reference_db: test_data/val/vlm_data_base
 vlm_max_new_tokens: 1024  # VLM generate() max_new_tokens; raise if vlm_raw JSON truncates
 
 # --- Episode Weights ---

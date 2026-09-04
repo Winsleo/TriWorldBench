@@ -221,7 +221,7 @@ cd /disk/worldmodel/wangshilong/TriWorldBench
 PY=/disk/worldmodel/uv/envs/triworldbench/bin/python
 $PY scripts/build_fake_gt.py \
     --gen-root /disk/worldmodel/wangsl_sync/submission/a2v_v4_test \
-    --gt-root /disk/worldmodel/wangshilong/TriWorldBench/test_data/gt_dataset_fake \
+    --gt-root /disk/worldmodel/wangshilong/TriWorldBench/test_data/test/gt_dataset \
     --frame-count 462
 
 # run eval (no-GT config -- 9 GT-free metrics)
@@ -229,7 +229,7 @@ cd /disk/worldmodel/wangshilong/TriWorldBench
 $PY run_eval.py \
     --config config/config_no_gt.yaml \
     --gen-root /disk/worldmodel/wangsl_sync/submission/a2v_v4_test \
-    --gt-root ./test_data/gt_dataset_fake \
+    --gt-root ./test_data/test/gt_dataset \
     --output-dir ./output/a2v_remote_run
 cat ./output/a2v_remote_run/summary.csv
 ```
@@ -237,7 +237,7 @@ cat ./output/a2v_remote_run/summary.csv
 ### 3.2 With full GT eval (20 GT-required + 9 GT-free metrics)
 
 Use `config/config.yaml` instead of `config_no_gt.yaml` and point `--gt-root`
-to the real `test_data/gt_dataset` (already downloaded in step 2.2.1).
+to the real `test_data/val/gt_dataset` (already downloaded in step 2.2.1).
 
 ---
 
@@ -335,7 +335,7 @@ cd /disk/worldmodel/wangshilong/TriWorldBench
 git log --oneline | head -3
 
 # 2. test_data exists and is non-empty
-ls test_data/gt_dataset | wc -l   # 100 episode dirs expected
+ls test_data/val/gt_dataset | wc -l   # 100 episode dirs expected
 
 # 3. Weights resolve
 for s in weights/*; do
