@@ -1,20 +1,20 @@
 # 大文件夹 — 不上传
 generate/
 input/
+# test_data/ 下只 track 小元数据 + VLM ref 图,实际 GT/STATE/test_dataset 大数据全部忽略
 test_data/*
-!test_data/vlm_data_base/
-!test_data/vlm_data_base/**
 !test_data/val/
+!test_data/val/gt_manifest.csv
+!test_data/val/data_readme.md
 !test_data/val/vlm_data_base/
 !test_data/val/vlm_data_base/**
-# test_data/STATE
-# test_data/STATE_100
-# test_data/STATE_vlm
-# test_data/vlm_gt_dataset
-# test_data/gt_manifest-x.csv
-# test_data/gt_manifest.csv
-# test_data/vlm_gt_manifest.csv
-# test_data/vlm_gt_mapping.json
+# 但 val/ 下的实际数据子目录要重新忽略
+test_data/val/gt_dataset/
+test_data/val/gt_dataset/**
+test_data/val/STATE/
+test_data/val/STATE/**
+test_data/val/test_dataset/
+test_data/val/test_dataset/**
 
 output/
 vlm_temp/
