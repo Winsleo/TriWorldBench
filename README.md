@@ -25,6 +25,7 @@
   - [Evaluation](#evaluation)
 - [Leaderboard & Submission](#leaderboard--submission)
 - [Acknowledgement](#acknowledgement)
+- [Citation](#citation)
 
 ## 📘 Additional Documentation
 - **[docs/LOCAL_EVAL_GUIDE.md](docs/LOCAL_EVAL_GUIDE.md)** — Agent 执行版本地评测指南(零重下、30 分钟跨机迁移、含端到端 quick check)。**必读 §0 + §11(本地 vs 提交区分)**
@@ -291,5 +292,20 @@ Welcome to join our WeChat Group for further discussion and communication.
 We acknowledge [RoboTwin 2.0](https://robotwin-platform.github.io/) for providing the dataset and simulation platform support that enables embodied task evaluation.
 
 For video quality evaluation, TriWorldBench also benefits from the open-source evaluation community, including [WorldArena](https://github.com/tsinghua-fib-lab/WorldArena), [VBench](https://github.com/Vchitect/VBench), [EWMBench](https://github.com/AgibotTech/EWMBench), [WorldScore](https://github.com/haoyi-duan/WorldScore), [EvalCrafter](https://github.com/evalcrafter/EvalCrafter), and [JEDI](https://github.com/oooolga/JEDi).
+
+---
+
+
+
+## Citation
+
+```
+@misc{triworldbench2026,
+  title        = {{TriWorldBench}: A Benchmark Evaluating Triple-View Embodied World Models},
+  year         = {2026},
+  howpublished = {\url{https://github.com/TriWorldBench/TriWorldBench}},
+  note         = {GitHub repository}
+}
+```
 
 ---
